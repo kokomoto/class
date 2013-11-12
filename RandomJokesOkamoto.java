@@ -11,7 +11,7 @@ public class RandomJokesOkamoto {
 
 		Random randJokeLine = new Random();
 		
-		String line = inputFile.nextLine();
+		//String line = inputFile.nextLine();
 		while (inputFile.hasNextLine()) {
 			jokeLines.add(inputFile.nextLine()); 
 		}
