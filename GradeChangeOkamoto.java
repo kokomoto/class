@@ -23,37 +23,37 @@ public class GradeChangeOkamoto {
 		File file = new File(filename);
 		Scanner inputFile = new Scanner(file); 
 
-		ArrayList <String> studentName = new ArrayList<String>();
-		ArrayList <Integer> studentGrade = new ArrayList <Integer>();
+		ArrayList <String> studentNames = new ArrayList<String>();
+		ArrayList <Integer> studentGrades = new ArrayList <Integer>();
 		
 		while (inputFile.hasNextLine()) {
-			String studentName = inputFile.nextLine();
+			String name = inputFile.nextLine();
 			//System.out.println(name);
-			studentName.add(name); 
-			String studentGrade = inputFile.nextLine();
-			studentGrade.add(Integer.parseInt(grade)); 
+			studentNames.add(name); 
+			String grade = inputFile.nextLine();
+			studentGrades.add(Integer.parseInt(grade)); 
 		}
 		inputFile.close();
 
 		System.out.println("Please enter the first and last name of the student whose grade you'd like to change.");
 		String inputName = input.nextLine(); 
 		
-		for (int nameIndex = -1; nameIndex <= studentName.size(); i++) {  
+		for (int nameIndex = -1; nameIndex <= studentNames.size(); nameIndex++) {  
    			
    			//If the name exists, ask for the new grade and enter it into the correct index
    			if (inputName.get(nameIndex).equalsIgnoreCase(studentName)) {  
         	System.out.println("Enter the student's new grade.");
         	int newGrade = input.nextInt();
-        	studentGrade.add(nameIndex, newGrade);   
+        	studentGrades.add(nameIndex, newGrade);   
         	}
 
         	//If the name does not exist, enter it into a new index and ask for the grade. Enter the grade
         	else {
-        	studentName.add(inputName);
-        	studentName.get(nameIndex);
+        	studentNames.add(inputName);
+        	studentNames.get(nameIndex);
         	System.out.println("This name does not exist. We'll add it to the file. Please enter this student's grade.");
 			int grade = input.nextInt();
-			studentGrade.add(grade);
+			studentGrades.add(grade);
         	}
         }
 
