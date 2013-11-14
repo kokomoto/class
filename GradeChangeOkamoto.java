@@ -1,4 +1,4 @@
-//This program allows a user to add, modify and search for student names and grades in a file. This is homework assignment #21. 
+//This program allows a user to search for a student's name and add or change his or her grade in an existing file. This is homework assignment #21. 
 import java.util.*;
 import java.io.*;
 
@@ -9,25 +9,23 @@ public class GradeChangeOkamoto {
 		String filename = input.nextLine();
 
 		File file = new File(filename);
-		Scanner inputFile = new Scanner(file); 
+		Scanner inputFile = new Scanner(file); 		
 
 		ArrayList <String> studentNames = new ArrayList<String>();
 		ArrayList <Integer> studentGrades = new ArrayList <Integer>();
 		
 		while (inputFile.hasNextLine()) {
-			String name = inputFile.nextLine();
-			studentNames.add(name); 
-			String grade = inputFile.nextLine();
-			studentGrades.add(Integer.parseInt(grade)); 
+			studentNames.add(inputFile.nextLine()); 
+			studentGrades.add(Integer.parseInt(inputFile.nextLine())); 
 		}
 		inputFile.close();
 
 		System.out.println("Please enter the first and last name of the student whose grade you'd like to change.");
 		String inputName = input.nextLine(); 
-		boolean match=false;
+		boolean match = false;
 		
 		for (int nameIndex = 0; nameIndex < studentNames.size(); nameIndex++) {  
-   			
+
    			//If the name exists, ask for the new grade and enter it into the correct index
    			if (studentNames.get(nameIndex).equalsIgnoreCase(inputName)) {  
         		System.out.println("The grade for " +inputName+ " is " + studentGrades.get(nameIndex) + ". Enter the student's new grade.");
@@ -44,5 +42,14 @@ public class GradeChangeOkamoto {
 			int grade = input.nextInt();
 			studentGrades.add(grade);
        	}
+
+       	FileWriter writer = new FileWriter (filename);
+
+       	for (int nameIndex = 0; nameIndex < studentNames.size(); nameIndex++){
+       		writer.write(studentNames.get(nameIndex)+ " \r\n");
+       		writer.write (studentGrades.get(nameIndex) + "\r\n");
+       	}
+       		
+       	writer.close();
 	}  
 }
