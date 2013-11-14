@@ -20,36 +20,43 @@ public class GradeChangeOkamoto {
 		}
 		inputFile.close();
 
-		System.out.println("Please enter the first and last name of the student whose grade you'd like to change.");
-		String inputName = input.nextLine(); 
 		boolean match = false;
+		while (match == false){
+
+			System.out.println("Please enter the first and last name of the student whose grade you'd like to change.");
+			String inputName = input.nextLine(); 
 		
-		for (int nameIndex = 0; nameIndex < studentNames.size(); nameIndex++) {  
+			for (int nameIndex = 0; nameIndex < studentNames.size(); nameIndex++) {  
 
    			//If the name exists, ask for the new grade and enter it into the correct index
-   			if (studentNames.get(nameIndex).equalsIgnoreCase(inputName)) {  
-        		System.out.println("The grade for " +inputName+ " is " + studentGrades.get(nameIndex) + ". Enter the student's new grade.");
-        		int newGrade = input.nextInt();
-        		studentGrades.set(nameIndex, newGrade);
-        		match = true;   
-        	}      	
-        }
+   				if (studentNames.get(nameIndex).equalsIgnoreCase(inputName)) {  
+        			System.out.println("The grade for " +inputName+ " is " + studentGrades.get(nameIndex) + ". Enter the student's new grade.");
+        			int newGrade = input.nextInt();
+        			studentGrades.set(nameIndex, newGrade);
+        			match = true;   
+        		}      	
+        	}
 
-        //If the name does not exist, enter it into a new index and ask for the grade. Enter the grade.
-       	if (match == false) {
-       		studentNames.add(inputName);
-       		System.out.println("This name does not exist. We'll add it to the file. Please enter this student's grade.");
-			int grade = input.nextInt();
-			studentGrades.add(grade);
+        	//If the name does not exist, enter it into a new index and ask for the grade. Enter the grade.
+       		if (match == false) {
+       			System.out.println("This name does not exist. Do you want to add this name? Enter Y or N.");
+       			String decision = input.nextLine();
+       			if (decision.equalsIgnoreCase("y")){
+       				studentNames.add(inputName);
+       				System.out.println("Please enter a grade.");
+					int grade = input.nextInt();
+					studentGrades.add(grade);
+					break;
+				}
+       		}
        	}
 
        	FileWriter writer = new FileWriter (filename);
 
        	for (int nameIndex = 0; nameIndex < studentNames.size(); nameIndex++){
-       		writer.write(studentNames.get(nameIndex)+ " \r\n");
+       		writer.write(studentNames.get(nameIndex)+ "\r\n");
        		writer.write (studentGrades.get(nameIndex) + "\r\n");
        	}
-       		
        	writer.close();
 	}  
 }

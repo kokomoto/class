@@ -1,5 +1,5 @@
 Albert Einstein
-96
+99
 Hilary Clinton
 93
 Rob Ford
@@ -14,3 +14,5 @@ Bill De Blasio
 86
 Amy Poehlner
 85
+jon stewart
+99
