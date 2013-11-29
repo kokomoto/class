@@ -7,12 +7,6 @@ public class CircleClassOkamoto {
 	private double perimeter;
 
 
-	public static void main (String [] args){
-		CircleClassOkamoto test = new CircleClassOkamoto (4);
-		System.out.println ("Perimeter: " + test.getPerimeter());
-		System.out.println ("Area: " + test.getArea()); 
-	}
-
 	// Default constructor. 
 	public CircleClassOkamoto () {
 		setRadius(1);
@@ -27,6 +21,18 @@ public class CircleClassOkamoto {
 		radius = rad;
 		perimeter = radius * 2 * Math.PI;
 		area = Math.PI*Math.pow(radius, 2);
+	}
+
+	public void setPerimeter (double perim) {
+		perimeter = perim;
+		radius = perimeter/(2*Math.PI);
+		area = Math.PI*(perimeter/(2*Math.PI))*(perimeter/(2*Math.PI));
+	}
+
+	public void setArea (double newArea) {
+		area = newArea;
+		radius = Math.sqrt(area/Math.PI);
+		perimeter = (Math.sqrt(area/Math.PI)*2*Math.PI); 
 	}
 
 	public double getRadius() {
